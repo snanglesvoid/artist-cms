@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators'
 
-const apiPrefix = 'localhost:3000/admin/api'
+const apiPrefix = '/admin/api'
 
 function graphql(query: string, variables: any = {}) {
-  return from(fetch('http://localhost:3000/admin/api', {
+  return from(fetch('/admin/api', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

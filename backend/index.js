@@ -34,7 +34,8 @@ const keystone = new Keystone({
   cors: corsOptions,
   onConnect: async (keystone) => {
     initialiseData(keystone)
-  }
+  },
+  secureCookies: false
 });
 
 const createdAtDefault = () => new Date().toISOString()
@@ -338,6 +339,7 @@ module.exports = {
     new AdminUIApp({
       enableDefaultRoute: true,
       authStrategy,
+      
     }),
     new StaticApp({
       path: '/',
