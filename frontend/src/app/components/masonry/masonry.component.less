@@ -1,0 +1,43 @@
+:host {
+    display: block;
+    min-width: 100%;
+    overflow-y: visible;
+    overflow-x: auto;
+  }
+  
+  :host ::ng-deep img {
+    transition: all 500ms ease;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  :host::-webkit-scrollbar {
+    width: 0;
+  }
+  
+  :host ::ng-deep .grid-item {
+    transform-origin: 50% 50%;
+    overflow: hidden;
+  }
+  
+  :host.row ::ng-deep .caption {
+    display: none !important;
+  }
+  :host.row.row_100 ::ng-deep img.carousel {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  :host.row.row_150 ::ng-deep img.carousel {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  :host.row.row_200 ::ng-deep img.carousel {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  
+  .grid {
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }

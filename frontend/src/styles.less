@@ -1,0 +1,455 @@
+/*!
+* Initialize.css (v1.3.1) is a complete and customizable collection of CSS best practices based on Normalize.css and HTML5 Boilerplate.
+* http://jeroenoomsnl.github.io/initialize-css
+*
+* HTML5 Boilerplate: https://github.com/h5bp/html5-boilerplate
+* Normalize.css: http://github.com/necolas/normalize.css
+*/
+audio,
+canvas,
+progress,
+sub,
+sup,
+video {
+  vertical-align: baseline;
+}
+details,
+hr,
+main,
+summary {
+  display: block;
+}
+button,
+hr {
+  overflow: visible;
+}
+pre,
+textarea {
+  overflow: auto;
+}
+body,
+fieldset {
+  margin: 0;
+}
+fieldset,
+hr,
+legend {
+  border: 0;
+  padding: 0;
+}
+html {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  line-height: 1.4;
+  font-size: 1em;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+*,
+:after,
+:before {
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  display: none;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+dfn {
+  font-style: italic;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 1px;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font: inherit;
+  margin: 0;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+button:-moz-focusring,
+input:-moz-focusring {
+  outline: ButtonText dotted 1px;
+}
+input {
+  line-height: normal;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type='search'] {
+  -webkit-appearance: textfield;
+}
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+textarea {
+  resize: vertical;
+}
+optgroup {
+  font-weight: 700;
+}
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+body,
+html {
+  font-family: 'Inconsolata', monospace;
+  margin: 0;
+  // background: #ffffff;
+  // background: lavender;
+  // background: lavenderblush;
+}
+
+body {
+  background: transparent;
+  min-height: 100vh;
+  // min-width: 100vw;
+  //    overflow: hidden;
+}
+
+
+ul {
+  padding-left: 0;
+  ul {
+    padding-left: 44px;
+  }
+  li {
+    list-style-type: none;
+  }
+}
+
+.page {
+  padding: 12px;
+  
+  width: 100%;
+  max-width: 1290px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.grid-item {
+  transform: translateY(100%);
+  transition: transform 1s ease, opacity 1s ease;
+  opacity: 0;
+}
+
+.grid-item.in-view {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.textblock {
+  max-width: 1064px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+body.desktop {
+  .grid-item {
+    img {
+      transition: filter 0.4s ease transform 0.5 ease opacity 0.5s ease;
+      filter: saturate(0.8);
+      transform: scale(1);
+      transform-origin: 50% 50%;
+      opacity: 0;
+    }
+    img:hover {
+      filter: saturate(1);
+      transform: scale(1.1);
+    }
+  }
+}
+
+//forms
+
+label {
+  display: inline-block;
+  max-width: 100%; // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
+  // font-weight: bold;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  white-space: nowrap;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s,
+  box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15;
+}
+
+textarea,
+select,
+input,
+button {
+  outline: none;
+}
+
+.form-group.has-error {
+  label,
+  span,
+  input,
+  textarea {
+    color: #a94442;
+  }
+  input {
+    border-color: #a94442;
+  }
+  input:focus {
+    border-width: 2px;
+  }
+  textarea.form-control {
+    background-image: linear-gradient(to right, white 10px, transparent 10px),
+    linear-gradient(to left, white 10px, transparent 10px),
+    repeating-linear-gradient(
+    white,
+    white 39px,
+    #a94442 39px,
+    #a94442 40px,
+    white 40px
+    );
+  }
+}
+.form-group {
+  margin-bottom: 0;
+  hr {
+    border-top: 1px solid #555;
+  }
+  .form-control {
+    display: inline-block;
+    width: ~'calc(100% - 88px)';
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 16px;
+  }
+  
+  .form-control:focus {
+    border-color: rgba(247, 199, 169, 1);
+  }
+  input.form-control {
+    height: 40px;
+  }
+  label {
+    margin-bottom: 0;
+    display: inline-block;
+    width: 82px;
+    vertical-align: top;
+    margin-top: 7px;
+    font-size: 20px;
+    
+    span {
+      display: inline-block;
+      width: 100%;
+      white-space: nowrap;
+    }
+  }
+  textarea.form-control {
+    padding-top: 0;
+    resize: none;
+    background-attachment: local;
+    background-image: linear-gradient(to right, white 10px, transparent 10px),
+    linear-gradient(to left, white 10px, transparent 10px),
+    repeating-linear-gradient(
+    white,
+    white 39px,
+    #ccc 39px,
+    #ccc 40px,
+    white 40px
+    );
+    line-height: 40px;
+    border-bottom: none;
+    height: unset;
+  }
+  textarea.form-control:focus {
+    background-image: linear-gradient(to right, white 10px, transparent 10px),
+    linear-gradient(to left, white 10px, transparent 10px),
+    repeating-linear-gradient(
+    white,
+    white 39px,
+    rgba(247, 199, 169, 1) 39px,
+    rgba(247, 199, 169, 1) 40px,
+    white 40px
+    );
+  }
+}
+
+.form-group.check {
+  margin-top: 12px;
+  span a {
+    text-decoration: none !important;
+  }
+  .checkmark-container {
+    display: inline;
+    margin-left: 8px;
+    position: relative;
+    span.checkmark {
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      background: white;
+      border: 1px solid #333;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    input[type='checkbox'] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 16px;
+      width: 16px;
+      opacity: 0;
+    }
+  }
+  .checkmark-container:hover {
+    span.checkmark {
+      background: rgba(247, 199, 169, 0.5);
+    }
+  }
+  
+  .checkmark-container input:checked ~ .checkmark {
+    background-color: rgba(247, 199, 169, 1);
+  }
+  text-align: right;
+  span {
+    font-size: 16px;
+  }
+}
+
+.form-actions {
+  .btn.btn-primary {
+    border-color: transparent;
+    border-radius: 0;
+    background: transparent;
+    color: #333;
+    // text-transform: uppercase;
+    transition: all 0.4s ease;
+    font-size: 20px;
+    padding: 0;
+    padding-right: 6px;
+    font-weight: 400;
+  }
+  .btn.btn-primary:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    color: #333;
+    font-weight: 400;
+  }
+}
+
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+  background-image: unset !important;
+  color: rgba(247, 199, 169, 1) !important;
+}
+
+.limit-width {
+  max-width: 640px;
+}

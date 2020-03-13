@@ -1,0 +1,10 @@
+<span class="letter-container lowercase" [class.active]="!hover">
+    <span *ngFor="let letter of letters; let i = index" class="letter">
+      <span [style.transition-delay]="i * 25 + 'ms'" [innerHtml]="letter"> </span>
+    </span>
+  </span>
+  <span class="letter-container capitalize" [class.active]="hover">
+    <span *ngFor="let letter of letters; let i = index" class="letter">
+      <span [style.transition-delay]="i * 25 + 'ms'" [innerHtml]="letter"> </span>
+    </span>
+  </span>

@@ -1,0 +1,29 @@
+<div
+  *ngIf="modal.isOpen"
+  class="modal-container"
+  [@fadeIn]="true"
+  (click)="modal.close()"
+  #container
+>
+  <div class="top">
+    <app-slideshow
+      [images]="modal.images"
+      imageClass="modal-img"
+      [currentSlide]="modal.active"
+      (panleft)="next($event)"
+      (panRight)="previous($event)"
+    >
+    </app-slideshow>
+
+    <app-slideshow-controller
+      *ngIf="!modal.loading"
+      [slideshow]="slideshow"
+      (animationDone)="animationFinished()"
+    >
+    </app-slideshow-controller>
+  </div>
+  <!-- <div class="bottom">
+    <a class="previous-image-button" (click)="previous($event)">&#10094;</a>
+    <a class="next-image-button" (click)="next($event)">&#10095;</a>
+  </div> -->
+</div>

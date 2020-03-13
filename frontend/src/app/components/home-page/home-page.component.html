@@ -1,0 +1,14 @@
+<br />
+<br />
+<app-three-d-heading 
+    [text]="settings.bannerText$ | async"
+    [texture]="settings.bannerTexture$ | async"
+></app-three-d-heading>
+<!-- <app-three-d-heading text="Artist CV"></app-three-d-heading> -->
+<div class="page">
+  <!-- <app-birch-cylinder></app-birch-cylinder> -->
+</div>
+
+<img [src]="backgroundUrl$ | async" class="background" />
+
+<!-- <app-picture [picture]=""></app-picture> -->

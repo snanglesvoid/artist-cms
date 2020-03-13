@@ -1,0 +1,39 @@
+:host {
+    display: block;
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li {
+        display: inline-flex;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        margin-left: 3px;
+        margin-right: 3px;
+        transition: all 0.2s ease;
+      }
+  
+      li.active {
+        background: rgba(255, 255, 255, 0.75);
+        transform: scale(1.25);
+      }
+    }
+  }
+  
+  body.desktop {
+    :host {
+      ul {
+        li:hover {
+          transform: scale(1.5);
+        }
+        li.active:hover {
+          transform: scale(1.5);
+        }
+      }
+    }
+  }

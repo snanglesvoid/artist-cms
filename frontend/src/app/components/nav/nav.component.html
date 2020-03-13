@@ -1,0 +1,32 @@
+<div
+  class="toggle"
+  (click)="toggleNav()"
+  [class.open]="visibility === 'visible'"
+>
+  <div [style.background]='settings.primaryColor$ | async'></div>
+  <div [style.background]='settings.primaryColor$ | async'></div>
+  <div [style.background]='settings.primaryColor$ | async'></div>
+</div>
+<br /><br />
+<ul [@toggle]="visibility" [style.background]='settings.primaryColor$ | async'>
+  <br />
+
+  <ng-container *ngFor="let category of pageCategories$ | async">
+    <li *ngIf="category.menuLabel">
+      <h3>
+        {{ category.menuLabel }}
+      </h3>
+    </li>
+    <li *ngFor="let page of category.pages">
+      <a (click)="toggleNav()" [routerLink]="'/' + page.slug">
+        <app-text-flip [text]="page.name"></app-text-flip>
+      </a>
+    </li>
+  </ng-container>
+
+  <!-- <li *ngFor="let page of pages$ | async">
+    <a (click)="toggleNav()" [routerLink]="'/' + page.slug">
+      <app-text-flip [text]="page.name"></app-text-flip>
+    </a>
+  </li> -->
+</ul>

@@ -1,0 +1,22 @@
+<!-- <h1>{{ pageTitle$ | async }}</h1> -->
+<div class="page">
+    <div class="grid">
+        <div *ngFor="let textblock of textblocks$ | async"
+            [style.grid-area]="safeGridArea(textblock)"
+        >
+            <app-markdown 
+                [markdown]="textblock.content">
+            </app-markdown>
+        </div>
+        <div *ngFor="let picture of pictures$ | async"
+            [style.grid-area]="safeGridArea(picture)"
+        >
+            <app-picture [picture]="picture"></app-picture>
+        </div>
+        <div *ngFor="let gallery of galleries$ | async"
+            [style.grid-area]="safeGridArea(gallery)"
+        >
+            <app-image-gallery [gallery]="gallery"></app-image-gallery>
+        </div>
+    </div>
+</div>

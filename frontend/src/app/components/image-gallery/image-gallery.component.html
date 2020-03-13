@@ -1,0 +1,10 @@
+<app-masonry #masonry appModalImages>    
+    <div #gridItem *ngFor="let picture of pictures$ | async"
+        class="grid-item"
+        appScrollTo
+        [ratio]="0.4"
+        (inViewport)="inViewportChange($event)"
+    >
+        <img (load)="imageLoaded($event)" [src]="picture.safeUrl" alt="">
+    </div>
+</app-masonry>

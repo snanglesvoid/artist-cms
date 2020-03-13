@@ -1,0 +1,11 @@
+<ul
+  *ngIf="slideshow"
+  [@listAnimation]="slideshow.images.length"
+  (@listAnimation.done)="animationDidFinish($event)"
+>
+  <li
+    *ngFor="let image of slideshow.images"
+    (click)="selectImage($event, image)"
+    [class.active]="isImageActive(image)"
+  ></li>
+</ul>

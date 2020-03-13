@@ -1,0 +1,40 @@
+:host {
+    display: inline-block;
+    position: relative;
+    /* height: 20px; */
+    /* width: 100%; */
+    font-size: 200%;
+  }
+  
+  span {
+    overflow: hidden;
+    display: inline-flex;
+  }
+  
+  span.letter-container:nth-child(2) {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  span.capitalize {
+    text-transform: capitalize;
+    letter-spacing: 1px;
+  }
+  span.lowercase {
+    text-transform: lowercase;
+    letter-spacing: 1px;
+  }
+  
+  .letter-container > span > span {
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  .letter-container.capitalize > span > span {
+    transform: translateX(-100%);
+  }
+  .letter-container.lowercase > span > span {
+    transform: translateX(100%);
+  }
+  .letter-container.active > span > span {
+    transform: translateX(0);
+  }

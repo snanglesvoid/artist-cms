@@ -1,0 +1,9 @@
+<div class="container">
+    <img
+      *ngFor="let image of images"
+      [attr.src]="image"
+      [ngClass]="imageClass"
+      [@fade]="image == currentSlide ? 'in' : 'out'"
+      (load)="imageLoaded($event)"
+    />
+  </div>
