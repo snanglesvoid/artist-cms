@@ -25,11 +25,11 @@ const cloudinaryAdapter = new CloudinaryAdapter({
   cloudName: process.env.CLOUDINARY_CLOUD_NAME,
   apiKey: process.env.CLOUDINARY_API_KEY,
   apiSecret: process.env.CLOUDINARY_API_SECRET,
-  folder: 'jule',
+  folder: process.env.CLOUDINARY_FOLDER,
 })
 /* keystone-cli: generated-code */
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose')
-const PROJECT_NAME = 'Jules Website'
+const PROJECT_NAME = process.env.PROJECT_NAME
 /* /keystone-cli: generated-code */
 
 var corsOptions = {
