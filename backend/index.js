@@ -1,12 +1,23 @@
-const { Keystone } = require('@keystonejs/keystone');
-const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
-const { StaticApp } = require('@keystonejs/app-static');
-const { Integer, Text, Checkbox, Password, Slug, Select, Color, DateTime, Relationship, CloudinaryImage } = require('@keystonejs/fields');
+const { Keystone } = require('@keystonejs/keystone')
+const { PasswordAuthStrategy } = require('@keystonejs/auth-password')
+const { StaticApp } = require('@keystonejs/app-static')
+const {
+  Integer,
+  Text,
+  Checkbox,
+  Password,
+  Slug,
+  Select,
+  Color,
+  DateTime,
+  Relationship,
+  CloudinaryImage,
+} = require('@keystonejs/fields')
 const { Markdown } = require('@keystonejs/fields-markdown')
-const { GraphQLApp } = require('@keystonejs/app-graphql');
-const { AdminUIApp } = require('@keystonejs/app-admin-ui');
+const { GraphQLApp } = require('@keystonejs/app-graphql')
+const { AdminUIApp } = require('@keystonejs/app-admin-ui')
 const { CloudinaryAdapter } = require('@keystonejs/file-adapters')
-const initialiseData = require('./initial-data');
+const initialiseData = require('./initial-data')
 
 require('dotenv').config()
 
@@ -15,17 +26,17 @@ const cloudinaryAdapter = new CloudinaryAdapter({
   apiKey: process.env.CLOUDINARY_API_KEY,
   apiSecret: process.env.CLOUDINARY_API_SECRET,
   folder: 'jule',
-});
+})
 /* keystone-cli: generated-code */
-const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
-const PROJECT_NAME = 'Jules Website';
+const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose')
+const PROJECT_NAME = 'Jules Website'
 /* /keystone-cli: generated-code */
 
 var corsOptions = {
   origin: '*',
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   preflightContinue: true,
-  optionsSuccessStatus: 204
+  optionsSuccessStatus: 204,
 }
 
 const keystone = new Keystone({
@@ -34,8 +45,8 @@ const keystone = new Keystone({
   cors: corsOptions,
   onConnect: async (keystone) => {
     initialiseData(keystone)
-  }
-});
+  },
+})
 
 const createdAtDefault = () => new Date().toISOString()
 const beforeChangeHook = (args) => {
@@ -45,27 +56,27 @@ const beforeChangeHook = (args) => {
   if (operation === 'update') {
     // console.log('update')
     args.resolvedData.updatedAt = new Date().toISOString()
-  }
-  else if (operation === 'create') {
+  } else if (operation === 'create') {
     // console.log('create')
     let user = context.authedItem
     args.resolvedData.createdBy = user.id
   }
 }
 // Access control functions
-const userIsAdmin = ({ authentication: { item: user } }) => Boolean(user && user.isAdmin);
+const userIsAdmin = ({ authentication: { item: user } }) =>
+  Boolean(user && user.isAdmin)
 const userOwnsItem = ({ authentication: { item: user } }) => {
   if (!user) {
-    return false;
+    return false
   }
-  return { id: user.id };
-};
-const userIsAdminOrOwner = auth => {
-  const isAdmin = access.userIsAdmin(auth);
-  const isOwner = access.userOwnsItem(auth);
-  return isAdmin ? isAdmin : isOwner;
-};
-const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
+  return { id: user.id }
+}
+const userIsAdminOrOwner = (auth) => {
+  const isAdmin = access.userIsAdmin(auth)
+  const isOwner = access.userOwnsItem(auth)
+  return isAdmin ? isAdmin : isOwner
+}
+const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner }
 
 keystone.createList('User', {
   fields: {
@@ -86,213 +97,293 @@ keystone.createList('User', {
     delete: access.userIsAdmin,
     auth: true,
   },
-});
+})
 
 keystone.createList('PageCategory', {
   labelField: 'name',
   fields: {
     name: { type: Text, isRequired: true },
-    slug: { type: Slug, from: 'name', isUnique: true, access: {
-      update: false, create: false
-    }},
-    createdAt: { 
+    slug: {
+      type: Slug,
+      from: 'name',
+      isUnique: true,
+      access: {
+        update: false,
+        create: false,
+      },
+    },
+    createdAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false,
+        create: false,
+        update: false,
       },
     },
-    createdBy: { type: Relationship, ref: 'User', isRequired: true,  
+    createdBy: {
+      type: Relationship,
+      ref: 'User',
+      isRequired: true,
       access: {
-        update: false, create: false
+        update: false,
+        create: false,
       },
     },
     updatedAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false
+        create: false,
+        update: false,
       },
     },
     menuLabel: { type: Text },
-    pages: { type: Relationship, ref: 'Page.category', many: true } 
-  }
+    pages: { type: Relationship, ref: 'Page.category', many: true },
+  },
 })
 
 keystone.createList('Page', {
-  labelField: "name",
+  labelField: 'name',
   fields: {
     name: { type: Text, isRequired: true },
-    slug: { type: Slug, from: 'name', isUnique: true, access: {
-      update: false, create: false
-    }},
-    createdAt: { 
+    slug: {
+      type: Slug,
+      from: 'name',
+      isUnique: true,
+      access: {
+        update: false,
+        create: false,
+      },
+    },
+    createdAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false,
+        create: false,
+        update: false,
       },
     },
-    createdBy: { type: Relationship, ref: 'User', isRequired: true,  
+    createdBy: {
+      type: Relationship,
+      ref: 'User',
+      isRequired: true,
       access: {
-        update: false, create: false
+        update: false,
+        create: false,
       },
     },
     updatedAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false
+        create: false,
+        update: false,
       },
     },
-    state: { type: Select, options: ['draft', 'published', 'archived'], default: () => 'draft'},
+    state: {
+      type: Select,
+      options: ['draft', 'published', 'archived'],
+      default: () => 'draft',
+    },
     order: { type: Integer },
-    group: { type: Select, options: ['Selected Works', 'Other'], default: 'Other' },
+    group: {
+      type: Select,
+      options: ['Selected Works', 'Other'],
+      default: 'Other',
+    },
     pictures: { type: Relationship, ref: 'Picture', many: true },
     galleries: { type: Relationship, ref: 'ImageGallery', many: true },
     textblocks: { type: Relationship, ref: 'TextBlock', many: true },
-    category: { type: Relationship, ref: 'PageCategory.pages' }
+    category: { type: Relationship, ref: 'PageCategory.pages' },
   },
   hooks: {
-    beforeChange: beforeChangeHook
-  }
+    beforeChange: beforeChangeHook,
+  },
 })
 
 keystone.createList('Picture', {
   labelField: 'title',
   fields: {
     title: { type: Text, isRequired: true },
-    slug: { type: Slug, isUnique: true, from: 'title', access: {create: false, update: false }},
-    createdAt: { 
+    slug: {
+      type: Slug,
+      isUnique: true,
+      from: 'title',
+      access: { create: false, update: false },
+    },
+    createdAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false,
+        create: false,
+        update: false,
       },
     },
-    createdBy: { type: Relationship, ref: 'User', isRequired: true,  
+    createdBy: {
+      type: Relationship,
+      ref: 'User',
+      isRequired: true,
       access: {
-        update: false, create: false
+        update: false,
+        create: false,
       },
     },
     updatedAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false
+        create: false,
+        update: false,
       },
     },
     picture: { type: CloudinaryImage, adapter: cloudinaryAdapter },
-    gridArea: { type: Integer }
-  }
+    gridArea: { type: Integer },
+  },
 })
 
 keystone.createList('ImageGallery', {
   labelField: 'title',
   fields: {
     title: { type: Text, isRequired: true },
-    slug: { type: Slug, isUnique: true, from: 'title', access: {create: false, update: false }},
-    createdAt: { 
+    slug: {
+      type: Slug,
+      isUnique: true,
+      from: 'title',
+      access: { create: false, update: false },
+    },
+    createdAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false,
+        create: false,
+        update: false,
       },
     },
-    createdBy: { type: Relationship, ref: 'User', isRequired: true,  
+    createdBy: {
+      type: Relationship,
+      ref: 'User',
+      isRequired: true,
       access: {
-        update: false, create: false
+        update: false,
+        create: false,
       },
     },
     updatedAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false
+        create: false,
+        update: false,
       },
     },
     pictures: { type: Relationship, ref: 'Picture', many: true },
-    gridArea: { type: Integer }
+    gridArea: { type: Integer },
   },
   hooks: {
-    beforeChange: beforeChangeHook
-  }
+    beforeChange: beforeChangeHook,
+  },
 })
 
 keystone.createList('TextBlock', {
   labelField: 'title',
   fields: {
     title: { type: Text, isRequired: true },
-    slug: { type: Slug, isUnique: true, from: 'title', access: {create: false, update: false }},
-    createdAt: { 
+    slug: {
+      type: Slug,
+      isUnique: true,
+      from: 'title',
+      access: { create: false, update: false },
+    },
+    createdAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false,
+        create: false,
+        update: false,
       },
     },
-    createdBy: { type: Relationship, ref: 'User', isRequired: true,  
+    createdBy: {
+      type: Relationship,
+      ref: 'User',
+      isRequired: true,
       access: {
-        update: false, create: false
+        update: false,
+        create: false,
       },
     },
     updatedAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false
+        create: false,
+        update: false,
       },
     },
     content: { type: Markdown },
-    gridArea: { type: Integer }
+    gridArea: { type: Integer },
   },
   hooks: {
-    beforeChange: beforeChangeHook
-  }
+    beforeChange: beforeChangeHook,
+  },
 })
 
 keystone.createList('Setting', {
   fields: {
     name: { type: Text, isRequired: true },
-    slug: { type: Slug, from: 'name', isUnique: true, access: {update: false, create: false}},
-    createdAt: { 
+    slug: {
+      type: Slug,
+      from: 'name',
+      isUnique: true,
+      access: { update: false, create: false },
+    },
+    createdAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false,
+        create: false,
+        update: false,
       },
     },
-    createdBy: { type: Relationship, ref: 'User', isRequired: true,  
+    createdBy: {
+      type: Relationship,
+      ref: 'User',
+      isRequired: true,
       access: {
-        update: false, create: false
+        update: false,
+        create: false,
       },
     },
     updatedAt: {
       type: DateTime,
       defaultValue: createdAtDefault,
       access: {
-        create: false, update: false
+        create: false,
+        update: false,
       },
     },
     active: { type: Checkbox },
     titleImage: { type: CloudinaryImage, adapter: cloudinaryAdapter },
     bannerTexture: { type: CloudinaryImage, adapter: cloudinaryAdapter },
-    bannerText: { type: Text, default: _ => 'Hello World' },
-    primaryColor: { type: Color, default: () => 'rgba(247,199,169,1)'}
+    bannerText: { type: Text, default: (_) => 'Hello World' },
+    primaryColor: { type: Color, default: () => 'rgba(247,199,169,1)' },
   },
   hooks: {
-    beforeChange: async ({ operation, resolvedData, context, actions: { query } }) => {
+    beforeChange: async ({
+      operation,
+      resolvedData,
+      context,
+      actions: { query },
+    }) => {
       if (operation === 'update') {
         // console.log('update')
         resolvedData.updatedAt = new Date().toISOString()
-      }
-      else if (operation === 'create') {
+      } else if (operation === 'create') {
         // console.log('create')
         let user = context.authedItem
         resolvedData.createdBy = user.id
       }
       if (resolvedData && resolvedData.active) {
-        let {errors, data} = await keystone.executeQuery(
+        let { errors, data } = await keystone.executeQuery(
           `query {
             allSettings {
               id
@@ -304,32 +395,40 @@ keystone.createList('Setting', {
           console.error(errors)
           throw errors
         }
-        console.log(data);
+        console.log(data)
         let allSettings = data ? data.allSettings : []
         try {
-
-          let {errors, data} = await query(
+          let { errors, data } = await query(
             `mutation UnActivateAll($data: [SettingsUpdateInput] ) {
               updateSettings(data: $data) {
                 name
                 active
               }
-            }`, {
-            skipAccessControl: true,
-            variables: { data: allSettings.map(x => ({id: x.id, data: {active: false}})) }
-          })
+            }`,
+            {
+              skipAccessControl: true,
+              variables: {
+                data: allSettings.map((x) => ({
+                  id: x.id,
+                  data: { active: false },
+                })),
+              },
+            }
+          )
           console.log('errors', errors)
           console.log('data', data)
-        }catch(err) {}
+        } catch (err) {
+          console.error(err)
+        }
       }
-    }
-  }
+    },
+  },
 })
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
   list: 'User',
-});
+})
 
 module.exports = {
   keystone,
@@ -342,7 +441,7 @@ module.exports = {
     new StaticApp({
       path: '/',
       src: './public',
-      fallback: 'index.html'
-    })
+      fallback: 'index.html',
+    }),
   ],
-};
+}
